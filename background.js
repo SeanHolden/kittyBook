@@ -10,10 +10,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   if(CLICKED===false){
     chrome.tabs.executeScript(null, {file: "bettaScript.js"});
     CLICKED = true;
-  }else{
-    console.log('nope...');
   };
 
-  
-  
 });
