@@ -9,16 +9,65 @@
 
 function init(){
   // mixUpProfileNames();
-  mixUpProfilePics();
+  // mixUpProfilePics();
   // testCode();
+  // getCommentPicsArray();
+  console.log(getCommentPicsArray());
+  // mixUpCommentProfilePics();
 }
 
-function mixUpProfilePics(){
-  var userContentWrapper = document.getElementsByClassName('userContentWrapper');
-  for(var i=0;i<userContentWrapper.length;i++){
-    userContentWrapper[i].getElementsByTagName('img')[0].src = 'http://localhost:8000/40.jpeg';
-    console.log(userContentWrapper[i].getElementsByTagName('img')[0].src);
+function mixUpCommentProfilePics(){
+  var commentProfileImages = getCommentPicsArray();
+  var shuffledImages = shuffle(commentProfileImages);
+
+  var commentLists = document.getElementsByClassName('UFIList');
+  for(var i=0;i<commentLists.length;i++){
+    for(var j=0;j<commentLists[i].getElementsByTagName('img').length;j++){
+      if(commentLists[i].getElementsByTagName('img')[j] === undefined) { continue };
+      if(commentLists[i].getElementsByTagName('img')[j].src === 'https://www.facebook.com/undefined') { continue };
+      if(commentLists[i].getElementsByTagName('img')[j].src.match(/.jpg$/) == null ) { continue };
+      commentLists[i].getElementsByTagName('img')[j].src = shuffledImages[j];
+    }
   }
+}
+
+function getCommentPicsArray(){
+  var commentLists = document.getElementsByClassName('UFIList');
+  var commentPicsArray = [];
+  for(var i=0;i<commentLists.length;i++){
+    for(var j=0;j<commentLists[i].getElementsByTagName('img').length;j++){
+      if( commentLists[i].getElementsByTagName('img')[j] === undefined ){ continue };
+      if( commentLists[i].getElementsByTagName('img')[j].src === 'https://www.facebook.com/undefined' ){ continue };
+      if( commentLists[i].getElementsByTagName('img')[j].src.match(/.jpg$/) == null ) { continue };
+       commentPicsArray.push( commentLists[i].getElementsByTagName('img')[j].src );
+    }
+  }
+  return commentPicsArray;
+}
+
+// get each image
+// if undefined, skip
+
+
+function mixUpProfilePics(){
+  var images = getProfilePicsArray();
+  var shuffledImages = shuffle(images);
+
+  var userContentWrapper = document.getElementsByClassName('userContentWrapper');
+
+  for(var i=0;i<userContentWrapper.length;i++){
+    userContentWrapper[i].getElementsByTagName('img')[0].src = shuffledImages[i];
+  }
+}
+
+function getProfilePicsArray(){
+  var userContentWrapper = document.getElementsByClassName('userContentWrapper');
+  var imgSrcArray = [];
+  for(var i=0;i<userContentWrapper.length;i++){
+    var imgSrc = userContentWrapper[i].getElementsByTagName('img')[0].src;
+    imgSrcArray.push(imgSrc);
+  }
+  return imgSrcArray;
 }
 
 function mixUpProfileNames(){
@@ -37,15 +86,6 @@ function mixUpProfileNames(){
     profileAndCommentNameElements[i].textContent = shuffledNames[i];
   }
 }
-
-function testCode(){
-  var fwb = Array.prototype.slice.call(document.getElementsByClassName('fwb'));
-  // console.log(fwb[0].textContent);
-  for(var i=0;i<fwb.length;i++){
-    console.log(fwb[i].textContent);
-  }
-}
-
 
 function getProfileNamesArray(){
   profileNames = document.getElementsByClassName('profileLink');
