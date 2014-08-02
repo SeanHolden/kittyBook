@@ -8,12 +8,8 @@
 // array.splice(desiredIndex, 1);
 
 function init(){
-  // mixUpProfileNames();
-  // mixUpProfilePics();
-  // testCode();
   pollBettaReplace();
   removeSideChat();
-  
 }
 
 function removeSideChat(){

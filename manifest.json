@@ -1,24 +1,6 @@
-// {
-//   "manifest_version": 2,
-
-//   "name": "Facebook Roulette",
-//   "version": "0.1",
-//   "description": "This extension introduces hard mode for facebook.",
-//   "browser_action": {
-//     "default_icon": "icon.png"
-//     // "default_popup": "popup.html"
-//   },
-//   "content_scripts": [
-//     {
-//       "matches": ["http://localhost:8000/whatever.html"],
-//       "js": ["script.js"]
-//     }
-//   ]
-// }
-
 {
-   "name": "Facebook Roulette",
-   "description": "Mix up facebook profile names and pics. Why? ... why not?",
+   "name": "Kitty Book",
+   "description": "Click to BETTA-FY your facebook news feed!",
    "version": "2.0",
    "permissions": [
      "activeTab"
@@ -28,7 +10,8 @@
       "persistent": false
     },
     "browser_action": {
-      "default_title": "Whatever"
+      "default_icon": "icon.png",
+      "default_title": "Kitty Book"
     },
     "manifest_version": 2
 }
